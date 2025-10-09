@@ -16,7 +16,7 @@
         const { useState } = React;
 
         // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTa7yZLDoITNu5goGWgfm7s3vYu0fTZ3sTAXr3e_tZdobo7ZwWYo1nCMqjxTqIlqtO3w/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcC2JnuV5khkOYFfzxp9s_AI2kmWy5ZfNCSVM4MjBM3jZKj3eLhp-ViXy0I57ekDd-9w/exec';
 
         function VendorSelectionForm() {
           const vendors = [
@@ -38,8 +38,10 @@
           const [showSuccess, setShowSuccess] = useState(false);
           const [showError, setShowError] = useState(false);
           const [isSubmitting, setIsSubmitting] = useState(false);
+          const [hasSubmitted, setHasSubmitted] = useState(false);
 
           const handleVendorToggle = (vendor) => {
+            if (hasSubmitted) return;
             if (selectedVendors.includes(vendor)) {
               setSelectedVendors(selectedVendors.filter(v => v !== vendor));
             } else {
@@ -49,7 +51,7 @@
 
           const handleSubmit = async (e) => {
             e.preventDefault();
-            if (selectedName && selectedVendors.length >= 5) {
+            if (selectedName && selectedVendors.length >= 5 && !hasSubmitted) {
               setIsSubmitting(true);
               setShowError(false);
 
@@ -66,10 +68,8 @@
                   })
                 });
 
-                setSelectedName('');
-                setSelectedVendors([]);
                 setShowSuccess(true);
-                setTimeout(() => setShowSuccess(false), 5000);
+                setHasSubmitted(true);
               } catch (error) {
                 console.error('Error:', error);
                 setShowError(true);
@@ -80,6 +80,38 @@
             }
           };
 
+          if (hasSubmitted) {
+            return (
+              <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-white rounded-xl shadow-lg p-8">
+                    <h1 className="text-3xl font-bold text-gray-800 mb-2">Thank You!</h1>
+                    <p className="text-gray-600 mb-6">Your vendor selection has been recorded.</p>
+                    
+                    <div className="mb-6">
+                      <h2 className="text-lg font-semibold text-gray-700 mb-2">Your Submission:</h2>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <p className="text-gray-700"><strong>Name:</strong> {selectedName}</p>
+                        <p className="text-gray-700 mt-2"><strong>Selected Vendors:</strong></p>
+                        <ul className="list-disc list-inside mt-1 text-gray-600">
+                          {selectedVendors.map(vendor => (
+                            <li key={vendor}>{vendor}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <p className="text-blue-800">
+                        You have already submitted your vendor selection. If you need to make changes, please contact the administrator.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
           return (
             <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
               <div className="max-w-4xl mx-auto">
@@ -87,16 +119,6 @@
                   <h1 className="text-3xl font-bold text-gray-800 mb-2">Vendor Selection Form</h1>
                   <p className="text-gray-600 mb-6">Select at least 5 vendors you'd like to meet (you can select more)</p>
                   
-                  {showSuccess && (
-                    <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
-                      <svg className="text-green-600" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                      </svg>
-                      <span className="text-green-800 font-medium">Selection submitted successfully! Your response has been recorded.</span>
-                    </div>
-                  )}
-
                   {showError && (
                     <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
                       <svg className="text-red-600" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -198,7 +220,6 @@
           );
         }
 
-        // Create root and render
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<VendorSelectionForm />);
     </script>
