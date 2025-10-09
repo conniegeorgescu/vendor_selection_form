@@ -18,7 +18,7 @@
         // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyBY9kc6SNqX1CHTx5N8M_0rWFw3dRuBzil78w3RtzKT3pQNpwb9OtBAK7QiB0nnva9aA/exec';
 
-        const VendorSelectionForm = () => {
+        function VendorSelectionForm() {
           const vendors = [
             'APC', 'Avast', 'Fellowes', 'HP', 'iStorage', 'Lenovo', 
             'Logitech', 'Philips', 'Samsung Mobile', 'Synology', 'TP Link'
@@ -66,7 +66,6 @@
                   })
                 });
 
-                // Note: no-cors mode doesn't allow reading response, but submission still works
                 setSelectedName('');
                 setSelectedVendors([]);
                 setShowSuccess(true);
@@ -197,9 +196,11 @@
               </div>
             </div>
           );
-        };
+        }
 
-        ReactDOM.render(<VendorSelectionForm />, document.getElementById('root'));
+        // Create root and render
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<VendorSelectionForm />);
     </script>
 </body>
 </html>
