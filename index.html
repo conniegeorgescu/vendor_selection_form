@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Selection Form</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    <div id="root"></div>
-    
+// ... existing code ...
     <script type="text/babel">
         const { useState } = React;
 
         // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywSi17w909uqrm3D8RwvwmVogmcAv45HIy0rY_F7MhymrgvFyuyd39IJlSwnWuDyIb8A/exec';
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
         const VendorSelectionForm = () => {
           const vendors = [
@@ -66,7 +55,6 @@
                   })
                 });
 
-                // Note: no-cors mode doesn't allow reading response, but submission still works
                 setSelectedName('');
                 setSelectedVendors([]);
                 setShowSuccess(true);
