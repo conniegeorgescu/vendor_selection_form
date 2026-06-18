@@ -13,6 +13,7 @@
     <div id="root"></div>
     
     <script type="text/babel">
+        /** @jsx React.createElement */
         const { useState } = React;
 
         // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
@@ -20,12 +21,21 @@
 
         function VendorSelectionForm() {
           const vendors = [
-          'Brother - Unlocking New Revenue with Labelling', 'Cherry - Highlighting office, security, and ergonomic ranges, and FOC Eval Units to key prospects', 'Dicota - See No Evil: Protecting What Shouldn’t Be Seen', 'Groupgear - Seamless AV Connectivity for Modern Spaces', 'Logitech - Accelerate. Support. Close', 'Microsoft Surface - Smarter Devices for Smarter Working', 'PSA Parts - OEM vs Compatible - More Margin. More Attach. More Profit', 'Samsung - Samsung Knox: Small Licence, Big Margin Opportunity', 'Sonicwall - Cloud Secure Edge (ZTNA remote access solution', 'Trust - Expanding Into High-Growth Sectors, E Sports and Public Sector', 'Westcoast- Dell: Moving from CSG strength to ISG growth'  
+            'Brother - Unlocking New Revenue with Labelling', 
+            'Cherry - Highlighting office, security, and ergonomic ranges, and FOC Eval Units to key prospects', 
+            'Dicota - See No Evil: Protecting What Shouldn’t Be Seen', 
+            'Groupgear - Seamless AV Connectivity for Modern Spaces', 
+            'Logitech - Accelerate. Support. Close', 
+            'Microsoft Surface - Smarter Devices for Smarter Working', 
+            'PSA Parts - OEM vs Compatible - More Margin. More Attach. More Profit', 
+            'Samsung - Samsung Knox: Small Licence, Big Margin Opportunity', 
+            'Sonicwall - Cloud Secure Edge (ZTNA remote access solution)', 
+            'Trust - Expanding Into High-Growth Sectors, E Sports and Public Sector', 
+            'Westcoast- Dell: Moving from CSG strength to ISG growth'
           ];
 
           const salesTeam = [
-            'Clare Douglas', 'David Walshe', 'Dilip Gorania', 'Elisabeth Burjaw', 'Elliott Yates', 'Hasan Haideri', 'Jason Curtis', 'Jenny Hodson', 'Jonathan Ashfall', 'Jon Garvey', 'Keane Richards', 'Klaudia Borun','Madison Moss-Williams', 'Maria Ntamirira', 'Mathew Pyle', 'Michael Doherty', 'Michael Owusu-Ansah', 'Nina Garner', 'Nourelhuda El Magbari', 'Paul Rennalls', 'Rourke Smal',
-    'Safyaan Lodhi', 'Zahid Hussain'
+            'Clare Douglas', 'David Walshe', 'Dilip Gorania', 'Elisabeth Burjaw', 'Elliott Yates', 'Hasan Haideri', 'Jason Curtis', 'Jenny Hodson', 'Jonathan Ashfall', 'Jon Garvey', 'Keane Richards', 'Klaudia Borun','Madison Moss-Williams', 'Maria Ntamirira', 'Mathew Pyle', 'Michael Doherty', 'Michael Owusu-Ansah', 'Nina Garner', 'Nourelhuda El Magbari', 'Paul Rennalls', 'Rourke Smal', 'Safyaan Lodhi', 'Zahid Hussain'
           ];
 
           const [selectedName, setSelectedName] = useState('');
