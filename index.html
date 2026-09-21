@@ -182,10 +182,7 @@
 
                           return (
                             <button
-                              key={ <strong>{vendor.split(' - ')[0]}</strong>
-  {' - '}
-  {vendor.split(' - ').slice(1).join(' - ')}
-</>
+                              key={vendor}
                               type="button"
                               onClick={() => handleVendorToggle(vendor)}
                               disabled={isSubmitting}
